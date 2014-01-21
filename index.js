@@ -10,11 +10,11 @@
 var Domo = require('domo-kun');
 var config = require('./config');
 
+var basicRoutes = require('./routes/basic');
+
 
 var mochi = new Domo(config);
-	
-mochi.route('hello mochi', function(res) {
-	this.say(res.channel, 'Meow moew beeep beep meep meow');
-});
+
+basicRoutes.initialize(mochi);
 
 mochi.connect();

@@ -1,0 +1,23 @@
+{
+  "name": "mochi-bot",
+  "version": "0.0.1",
+  "description": "An IRC bot named Mochi.",
+  "main": "index.js",
+  "dependencies": {
+    "domo-kun": "~0.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cemckinley/mochi-bot.git"
+  },
+  "author": "cemckinley@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cemckinley/mochi-bot/issues"
+  },
+  "homepage": "https://github.com/cemckinley/mochi-bot"
+}
