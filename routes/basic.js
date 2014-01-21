@@ -47,7 +47,7 @@ var basicRoutes = {
 			}
 		},
 		{
-			match: ":anything?bummer:anything2?",
+			match: "/bummer|lame/gi?",
 			action: function(res){
 				var self = this,
 					httpOpts = {
@@ -72,13 +72,13 @@ var basicRoutes = {
 			}
 		},
 		{
-			match: ":anything?dumb:anything2?",
+			match: "/dumb/gi",
 			action: function(res){
 				this.say(res.channel, "Maybe your mom is dumb [freddie]");
 			}
 		},
 		/**
-		 * User gives something to mochi. Third splat will be the remainder of the string with whatever was given
+		 * User gives something to mochi.
 		 */
 		{
 			match: /(?=.*give)(?=.*mochi).*/gi,
