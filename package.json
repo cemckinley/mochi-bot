@@ -4,7 +4,8 @@
   "description": "An IRC bot named Mochi.",
   "main": "index.js",
   "dependencies": {
-    "domo-kun": "~0.1.4"
+    "domo-kun": "~0.1.4",
+    "ntwitter": "~0.5.0"
   },
   "devDependencies": {},
   "scripts": {

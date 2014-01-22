@@ -11,7 +11,7 @@ var config = {
 	userName: 'Mochi',
 	realName: 'Mochi the IRC Bot',
 	address: 'chat.freenode.net',
-	channels: ['#hillpeople'],
+	channels: ['#yourchannel'],
 	users: [],
 	debug: true
 };
