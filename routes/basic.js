@@ -147,7 +147,7 @@ var basicRoutes = {
 					var randomTweet = data.statuses[ Math.floor( Math.random() * data.statuses.length )].text,
 						sanitized;
 
-					sanitized = randomTweet.replace(/\bRT\b|\B@[A-Za-z0-9_]+|\B\#/gi, "");
+					sanitized = randomTweet.replace(/\bRT\b|\B@[A-Za-z0-9_]+|\B@\.[A-Za-z0-9_]+|\B\#/gi, "");
 					sanitized = sanitized.replace(/\s+/gi, " ");
 
 					return sanitized;
