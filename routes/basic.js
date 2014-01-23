@@ -194,6 +194,7 @@ var basicRoutes = {
 							self.say( res.channel, tweet );
 						}else{
 							console.log('Looked for tweets with query: ' + q + ', none found');
+							self.say(res.channel, "I'm not really sure what to think about that.");
 						}
 					}
 				});
