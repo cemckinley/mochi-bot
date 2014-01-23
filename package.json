@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "domo-kun": "~0.1.4",
-    "ntwitter": "~0.5.0"
+    "mtwitter": "~1.5.2"
   },
   "devDependencies": {},
   "scripts": {

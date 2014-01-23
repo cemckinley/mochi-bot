@@ -7,13 +7,22 @@
 
 
 var config = {
-	nick: 'Mochi',
-	userName: 'Mochi',
-	realName: 'Mochi the IRC Bot',
-	address: 'chat.freenode.net',
-	channels: ['#yourchannel'],
-	users: [],
-	debug: true
+
+	bot: {
+		nick: 'Mochi',
+		userName: 'Mochi',
+		realName: 'Mochi the IRC Bot',
+		address: 'chat.freenode.net',
+		channels: ['#yourroom'],
+		users: [],
+		debug: true
+	},
+	twitter: {
+		consumer_key: 'Twitter',
+		consumer_secret: 'API',
+		access_token_key: 'keys',
+		access_token_secret: 'go here'
+	}
 };
 
 module.exports = config;

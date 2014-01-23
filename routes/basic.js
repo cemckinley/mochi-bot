@@ -6,9 +6,17 @@
  */
 
 var http = require('http');
+var twitter = require('mtwitter');
+var config = require('../config');
 
 
 var basicRoutes = {
+
+	state: {
+		favoriteUser: null
+	},
+	twitter: new twitter(config.twitter),
+
 
 	initialize: function(bot){
 
@@ -16,10 +24,6 @@ var basicRoutes = {
 			bot.route.call( bot, this.routes[i].match, this.routes[i].action );
 		}
 
-	},
-
-	state: {
-		favoriteUser: null
 	},
 
 	routes: [
@@ -130,21 +134,69 @@ var basicRoutes = {
 			match: /\bthink\b|\bwonder\b|\bfeel like\b/gi,
 			action: function(res){
 				var self = this,
-					httpOpts = {
-						host: "api.reddit.com",
-						path: "/comments.json?limit=10"
-					},
 					msg = res.message,
 					q;
 
-				q = msg.replace(/\bthink\b|\bwonder\b|\bfeel like\b|\bi\b|\byou\b|\bwe\b|\bme\b|\bthem\b|\bthey\b|\bit\b|\ba\b|\bthe\b|\bthis\b|\bthat\b/gi, "");
-				q = q.replace(/\s+/gi, ",").split(",");
-				q.length = 5;
-				q = q.join(" ");
+				/**
+				 * Remove RT, usernames, and hash symbols from a random tweet from data results
+				 * Also clean up spaces after removing any words
+				 * @param  {Object} data    Twitter data response
+				 * @return {String}         Sanitized tweet text
+				 */
+				function getAndSanitizeTweet(data){
+					var randomTweet = data.statuses[ Math.floor( Math.random() * data.statuses.length )].text,
+						sanitized;
 
-				httpOpts.path += '&q=' + encodeURIComponent(q);
+					sanitized = randomTweet.replace(/\bRT\b|\B@[A-Za-z0-9_]+|\B\#/gi, "");
+					sanitized = sanitized.replace(/\s+/gi, " ");
 
-				console.log(httpOpts.path);
+					return sanitized;
+				}
+
+				/**
+				 * Get a random selection (5 items) of keywords from the message, return as an array
+				 * @param  {String} str    user chat message
+				 * @return {Array}         array of keywords
+				 */
+				function gatherRandomKeywords(str){
+					var all,
+						randIndex,
+						keywords = [];
+
+					str = str.replace(/\bthink\b|\bwonder\b|\bfeel like\b|\bi\b|\byou\b|\bwe\b|\bme\b|\bthem\b|\bthey\b|\bit\b|\ba\b|\bthe\b|\bthis\b|\bthat\b|\bwhat\b|\bmochi\b/gi, "");
+					all = str.replace(/\s+/gi, ",").split(",");
+
+					for( var i = 0, len = 5; i < len; i++ ){
+						if( all[i] === "" ) all.splice(i, 1);
+						if( all.length > 0 ){
+							randIndex = Math.floor( Math.random() * all.length );
+							keywords.push( all[randIndex] );
+							all.splice( randIndex, 1 );
+						}
+					}
+
+					return keywords;
+				}
+
+				q = gatherRandomKeywords(msg);
+				q = encodeURIComponent( q.join(" ") );
+
+				// make request to twitter REST
+				basicRoutes.twitter.get('search/tweets', {q: q}, function(err, data){
+					var tweet;
+
+					if(err){
+						console.log(err);
+					}else if(data){
+						console.log(data);
+						if( data.statuses && data.statuses.length > 0 ){
+							tweet = getAndSanitizeTweet(data);
+							self.say( res.channel, tweet );
+						}else{
+							console.log('Looked for tweets with query: ' + q + ', none found');
+						}
+					}
+				});
 			}
 		}
 	]

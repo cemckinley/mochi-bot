@@ -13,7 +13,7 @@ var config = require('./config');
 var basicRoutes = require('./routes/basic');
 
 
-var mochi = new Domo(config);
+var mochi = new Domo(config.bot);
 
 basicRoutes.initialize(mochi);
 
