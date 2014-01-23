@@ -163,7 +163,7 @@ var basicRoutes = {
 						randIndex,
 						keywords = [];
 
-					str = str.replace(/\bthink\b|\bwonder\b|\bfeel like\b|\bi\b|\byou\b|\bwe\b|\bme\b|\bthem\b|\bthey\b|\bit\b|\ba\b|\bthe\b|\bthis\b|\bthat\b|\bwhat\b|\bmochi\b/gi, "");
+					str = str.replace(/\bthink\b|\bwonder\b|\bfeel like\b|\bi\b|\byou\b|\bwe\b|\bme\b|\bthem\b|\bthey\b|\bit\b|\ba\b|\bthe\b|\bthis\b|\bthat\b|\bwhat\b|\bis\b|\bwas\b|\bfor\b|\bmochi\b/gi, "");
 					all = str.replace(/\s+/gi, ",").split(",");
 
 					for( var i = 0, len = 5; i < len; i++ ){
