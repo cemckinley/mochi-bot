@@ -56,7 +56,7 @@ var basicRoutes = {
 				var self = this;
 
 				getCatGif(function(gifSrc){
-					self.say(res.channel, "Chill my friend. Check this out: " + gifSrc);
+					self.say(res.channel, "When I am bummed out I like to sing the song of my people." + gifSrc);
 				});
 			}
 		},
@@ -73,7 +73,7 @@ var basicRoutes = {
 		{
 			match: /dumb/gi,
 			action: function(res){
-				this.say(res.channel, "Maybe your mom is dumb [freddie]");
+				this.say(res.channel, "SO DUMB! [freddie]");
 			}
 		},
 		/**
