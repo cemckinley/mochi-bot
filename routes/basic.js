@@ -126,7 +126,7 @@ var basicRoutes = {
 			}
 		},
 		{
-			match: /\bthink\b|\bwonder\b|\bfeel like\b/gi,
+			match: /(?=.*mochi).*\b(think|wonder|feel like)\b/gi,
 			action: function(res){
 				var self = this,
 					msg = res.message,
