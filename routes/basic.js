@@ -47,7 +47,13 @@ var basicRoutes = {
 		{
 			match: /lol/gi,
 			action: function(res){
-				this.say(res.channel, "Haha haha fun!");
+				if (Math.random() <= 0.2) {
+					if (Math.random() > 0.2) {
+						this.say(res.channel, "Haha haha fun!");
+					} else {
+						this.say(res.channel, "[ragelion]");
+					}
+				}
 			}
 		},
 		{
