@@ -51,7 +51,7 @@ var basicRoutes = {
 			}
 		},
 		{
-			match: /bummer|lame/gi,
+			match: /\bbummer\b|\blame\b/gi,
 			action: function(res){
 				var self = this;
 
